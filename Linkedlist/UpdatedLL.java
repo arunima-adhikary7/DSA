@@ -132,6 +132,45 @@ public class UpdatedLL {
         }
     }
 
+
+    // Sum of numeric nodes (for Integer linked list)
+    public int sumOfNodes() {
+        Node curr = head;
+        int sum = 0;
+        while (curr != null) {
+            sum += Integer.parseInt(curr.data);
+            curr = curr.next;
+        }
+        return sum;
+    }
+
+    // Max node (for Integer linked list)
+    public int maxNode() {
+        if (head == null) return Integer.MIN_VALUE;
+        int max = Integer.parseInt(head.data);
+        Node curr = head.next;
+        while (curr != null) {
+            int val = Integer.parseInt(curr.data);
+            if (val > max) max = val;
+            curr = curr.next;
+        }
+        return max;
+    }
+
+    // Min node (for Integer linked list)
+    public int minNode() {
+        if (head == null) return Integer.MAX_VALUE;
+        int min = Integer.parseInt(head.data);
+        Node curr = head.next;
+        while (curr != null) {
+            int val = Integer.parseInt(curr.data);
+            if (val < min) min = val;
+            curr = curr.next;
+        }
+        return min;
+    }
+
+
     // Remove all occurrences of a key
     public void removeAllOccurrences(String key) {
         while (head != null && head.data.equals(key)) {
@@ -194,32 +233,65 @@ public class UpdatedLL {
     }
 
     // Main method to test
-    public static void main(String[] args) {
-        UpdatedLL list = new UpdatedLL();
-        list.addLast("1");
-        list.addLast("2");
-        list.addLast("3");
-        list.addLast("2");
-        list.addLast("4");
-        list.addLast("2");
-        list.printList(); // 1->2->3->2->4->2->null
+ public static void main(String[] args) {
+    UpdatedLL list = new UpdatedLL();
 
-        System.out.println("Removing all occurrences of 2...");
-        list.removeAllOccurrences("2");
-        list.printList(); // 1->3->4->null
+    System.out.println("=== Adding nodes ===");
+    list.addFirst("10");
+    list.addFirst("20");
+    list.addLast("30");
+    list.addLast("40");
+    list.addLast("40"); // duplicate for testing
+    list.addLast("50");
+    list.printList(); // 20->10->30->40->40->50->null
 
-        System.out.println("2nd node from end: " + (list.findNthFromEnd(2) != null ? list.findNthFromEnd(2).data : "null"));
+    System.out.println("\n=== Remove first node ===");
+    list.removeFirst();
+    list.printList(); // 10->30->40->40->50->null
 
-        System.out.println("Deleting 2nd node from end...");
-        list.deleteNthFromEnd(2);
-        list.printList(); // 1->3->null
+    System.out.println("\n=== Remove last node ===");
+    list.removeLast();
+    list.printList(); // 10->30->40->40->null
 
-        System.out.println("Loop detected? " + list.detectLoop()); // false
+    System.out.println("\n=== Count nodes ===");
+    System.out.println("Node count: " + list.countNodes()); // 4
 
-        list.reverse();
-        System.out.print("Reversed list: ");
-        list.printList(); // 3->1->null
-    }
+    System.out.println("\n=== Search for 30 ===");
+    System.out.println("Found 30? " + list.search("30")); // true
+
+    System.out.println("\n=== Sum, Max, Min ===");
+    System.out.println("Sum: " + list.sumOfNodes()); // 10+30+40+40=120
+    System.out.println("Max: " + list.maxNode());   // 40
+    System.out.println("Min: " + list.minNode());   // 10
+
+    System.out.println("\n=== Reverse list ===");
+    list.reverse();
+    list.printList(); // 40->40->30->10->null
+
+    System.out.println("\n=== Find middle node ===");
+    UpdatedLL.Node middle = list.findMiddle();
+    System.out.println("Middle node: " + (middle != null ? middle.data : "null")); // 40
+
+    System.out.println("\n=== Remove duplicates from sorted list ===");
+    list.removeDuplicatesSorted();
+    list.printList(); // 40->30->10->null (not fully sorted, but method works on sorted)
+
+    System.out.println("\n=== Remove all occurrences of 30 ===");
+    list.removeAllOccurrences("30");
+    list.printList(); // 40->10->null
+
+    System.out.println("\n=== Find 2nd node from end ===");
+    UpdatedLL.Node nth = list.findNthFromEnd(2);
+    System.out.println("2nd node from end: " + (nth != null ? nth.data : "null")); // 40
+
+    System.out.println("\n=== Delete 2nd node from end ===");
+    list.deleteNthFromEnd(2);
+    list.printList(); // 10->null
+
+    System.out.println("\n=== Detect loop ===");
+    System.out.println("Loop detected? " + list.detectLoop()); // false
+}
+
 }
 
 

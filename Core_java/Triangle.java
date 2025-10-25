@@ -1,4 +1,3 @@
-package Core_java;
 
 public class Triangle {
 

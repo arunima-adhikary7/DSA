@@ -43,7 +43,6 @@ public class UpdatedLL {
         }
         System.out.println("null");
     }
-
     // Remove first node
     public void removeFirst() {
         if (head == null) {
@@ -155,7 +154,7 @@ public class UpdatedLL {
             curr = curr.next;
         }
         return max;
-    }
+    } 
 
     // Min node (for Integer linked list)
     public int minNode() {

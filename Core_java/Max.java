@@ -1,4 +1,3 @@
-package Core_java;
 
 public class Max {
     public static void main(String[] args) {

@@ -56,62 +56,105 @@ class Solution {
 
 
 
-public boolean isBipartite(int[][] graph) {
+// public boolean isBipartite(int[][] graph) {
 
 
-    Queue<Integer>q=new LinkedList<>();
+//     Queue<Integer>q=new LinkedList<>();
 
-    int n=graph.length;
-    int m=graph[0].length;
+//     int n=graph.length;
+//     int m=graph[0].length;
 
-   int[] vis=new int[n];
-   Arrays.fill(vis,-1);
+//    int[] vis=new int[n];
+//    Arrays.fill(vis,-1);
 
-   for(int start=0;start<n;start++)
-   {
-        // If this node is already visited,
-        // it belongs to an already checked component
-        if (vis[start] != -1) {
-            continue;
-        }
+//    for(int start=0;start<n;start++)
+//    {
+//         // If this node is already visited,
+//         // it belongs to an already checked component
+//         if (vis[start] != -1) {
+//             continue;
+//         }
 
-   q.offer(start);
-   vis[start]=0;
-   while(!q.isEmpty())
-   {
-     int node=q.poll();
-     for(int neighbor:graph[node])
-     {
-        if(vis[neighbor]==-1 )
-        {
+//    q.offer(start);
+//    vis[start]=0;
+//    while(!q.isEmpty())
+//    {
+//      int node=q.poll();
+//      for(int neighbor:graph[node])
+//      {
+//         if(vis[neighbor]==-1 )
+//         {
             
       
-        vis[neighbor]=1-vis[node];
-          q.offer(neighbor);
+//         vis[neighbor]=1-vis[node];
+//           q.offer(neighbor);
         
       
-        }
-        else
+//         }
+//         else
+//         {
+//             if(vis[neighbor]==vis[node])
+//             {
+//                 return false;
+//             }
+           
+//         }
+//      }
+//    }
+//    }
+
+//     return true;
+//  }
+// }
+
+
+
+
+
+ public boolean isBipartite(int[][] graph) {
+
+    int n=graph.length;
+    int[] vis=new int[n];
+    Arrays.fill(vis,-1);
+    for(int i=0;i<n;i++)
+    {
+        if(vis[i]==-1)
         {
-            if(vis[neighbor]==vis[node])
+           if(!dfs(i,0,graph,vis))
+           {
+            return false;
+           }
+        }
+    }
+     return true;
+ }
+
+ public static boolean dfs(int node,int color,int[][]graph,int[]vis)
+ {
+    vis[node]=color;
+    for(int it:graph[node])
+    {
+        if(vis[it]==-1)
+        {
+            if(!dfs(it,1-color,graph,vis))
             {
                 return false;
             }
-           
         }
-     }
-   }
-   }
+            else 
+            {
+                if(vis[it]==vis[node])
+            {
+                return false;
 
+            }
+            }
+    }
     return true;
+
  }
+
 }
-
-
-
-
-
-
 
 
 

@@ -23,35 +23,46 @@ class Solution {
 
 
 
+// public int findDuplicate(int[] nums) {
+
+//     int count=0;
+
+//     Arrays.sort(nums);
+//     for(int i=0;i<nums.length-1;i++)
+//     {
+//         count++;
+//         if(nums[i]==nums[i+1])
+//         {
+//             count++;
+//         }
+//         else
+//         {
+//             count=0;
+//         }
+//         if(count>1)
+//         {
+//             return nums[i];
+//         }
+//     }
+
+//     return -1;
+// }
+
+
 public int findDuplicate(int[] nums) {
-
-    int count=0;
-
     Arrays.sort(nums);
+
     for(int i=0;i<nums.length-1;i++)
     {
-        count++;
         if(nums[i]==nums[i+1])
-        {
-            count++;
-        }
-        else
-        {
-            count=0;
-        }
-        if(count>1)
         {
             return nums[i];
         }
+
     }
 
-    return -1;
+
+return -1;
+
 }
-
-
-
-
-
-
-
 }

@@ -51,6 +51,9 @@ class Solution {
 
      while(list1!=null && list2!=null)
      {
+
+
+        
         if(list1.val<=list2.val)
         {
             tail.next=list1;

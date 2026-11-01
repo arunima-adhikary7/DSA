@@ -105,31 +105,83 @@
 
 class Solution
 {
- public int characterReplacement(String s, int k) {
+//  public int characterReplacement(String s, int k) {
 
-    int[] store=new int[26];
-    int maxfreq=Integer.MIN_VALUE;
-    int left=0;
-    int maxlength=0;
+//     int[] store=new int[26];
+//     int maxfreq=Integer.MIN_VALUE;
+//     int left=0;
+//     int maxlength=0;
 
-    for(int i=0;i<s.length();i++)
+//     for(int i=0;i<s.length();i++)
+//     {
+//         char ch=s.charAt(i);
+//         store[ch-'A']++;
+//         maxfreq=Math.max(maxfreq,store[ch-'A']);
+//         if(((i-left+1)-maxfreq)>k)
+//         {
+//             store[s.charAt(left)-'A']--;
+//             left++;
+//         }
+//         maxlength=Math.max(maxlength,i-left+1);
+
+//     }
+
+
+
+//    return maxlength;
+//  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public int characterReplacement(String s, int k) {
+
+
+  int count=0;
+  int maxcount=Integer.MIN_VALUE;
+  int[] c=new int[26];
+  int l=0;
+  int maxfreq=Integer.MIN_VALUE;
+
+
+  for(int i=0;i<s.length();i++)
+  {
+    char ch=s.charAt(i);
+    c[ch-'A']++;
+    maxfreq=Math.max(maxfreq,c[ch-'A']);
+
+    if((i-l+1)-maxfreq>k)
     {
-        char ch=s.charAt(i);
-        store[ch-'A']++;
-        maxfreq=Math.max(maxfreq,store[ch-'A']);
-        if(((i-left+1)-maxfreq)>k)
-        {
-            store[s.charAt(left)-'A']--;
-            left++;
-        }
-        maxlength=Math.max(maxlength,i-left+1);
-
+        c[s.charAt(l)-'A']--;
+        l++;
     }
+     maxcount=Math.max(maxcount,i-l+1);
+
+
+  }
 
 
 
-   return maxlength;
- }
+
+
+  return maxcount;
+
+
+}
+
+
+
 
 }
 

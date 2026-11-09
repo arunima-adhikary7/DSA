@@ -40,6 +40,7 @@ public int minEatingSpeed(int[] piles, int h) {
     for(int i:piles)
     {
         high=Math.max(high,i);
+        low=Math.min(low,i);
     }
 
     while(low<=high)
